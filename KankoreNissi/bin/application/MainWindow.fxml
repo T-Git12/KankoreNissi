@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="400.0" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PleaseProvideControllerClassName">
+   <children>
+      <TableView fx:id="DropTeble1" layoutY="80.0" prefHeight="327.0" prefWidth="400.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <columns>
+            <TableColumn fx:id="select" minWidth="22.0" prefWidth="22.0" />
+            <TableColumn fx:id="InDateAndTime" minWidth="110.0" prefWidth="110.0" text="日時" />
+            <TableColumn fx:id="InSeaArea" minWidth="80.0" text="海域" />
+            <TableColumn fx:id="InSquare" minWidth="35.0" prefWidth="35.0" text="マス" />
+            <TableColumn fx:id="InRank" minWidth="40.0" prefWidth="40.0" text="ランク" />
+            <TableColumn fx:id="InDropShip" minWidth="0.0" prefWidth="112.0" text="ドロップ艦娘" />
+         </columns>
+      </TableView>
+      <Button fx:id="DropImport" layoutX="346.0" layoutY="48.0" mnemonicParsing="false" onAction="#onImportButtonAction" text="追加" />
+      <Button fx:id="DropReport" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDropReport" prefHeight="25.0" prefWidth="90.0" text="ドロップ報告書" />
+      <Button fx:id="Expedition" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" onAction="#onExpedition" text="遠征" />
+      <Button fx:id="Recipe" layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRecipe" text="レシピ" />
+      <TextField fx:id="TextSeaArea" layoutX="52.0" layoutY="48.0" prefHeight="25.0" prefWidth="81.0" promptText="海域" />
+      <TextField fx:id="TextSquare" layoutX="134.0" layoutY="48.0" prefHeight="25.0" prefWidth="35.0" promptText="マス" />
+      <TextField fx:id="TextRank" layoutX="170.0" layoutY="48.0" prefHeight="25.0" prefWidth="50.0" promptText="ランク" />
+      <TextField fx:id="TextDropShip" layoutX="221.0" layoutY="48.0" prefHeight="25.0" prefWidth="122.0" promptText="ドロップ艦娘" />
+      <Button layoutX="5.0" layoutY="48.0" mnemonicParsing="false" onAction="#DeletSelectedRow" prefHeight="25.0" prefWidth="44.0" text="削徐" />
+      <Button fx:id="importButton" layoutX="336.0" layoutY="417.0" mnemonicParsing="false" onAction="#onCSVImport" text="インポート" AnchorPane.bottomAnchor="8.0" />
+      <Button fx:id="exportButton" layoutX="260.0" layoutY="417.0" mnemonicParsing="false" onAction="#onCSVExport" text="エクスポート" AnchorPane.bottomAnchor="8.0" />
+   </children>
+</AnchorPane>
