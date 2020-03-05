@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,35 +29,35 @@ public class DropReportController implements Initializable{
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-            // チョイスボックスに項目を追加 途中　ソーとしてから
+            // チョイスボックスに項目を追加
     	ItemSelect.getItems().add("指定なし");
     	List<String> choicelist = new ArrayList<String>();
     	List<String> table = new ArrayList<String>();
     	
-    	Comparator<DropRecordData> comparator = Comparator.comparing(DropRecordData::getSeaArea).thenComparing(DropRecordData::getSquare);
-    	PleaseProvideControllerClassName.data.stream().sorted(comparator).forEach(i -> {table.add(i.getSeaArea());
+    	if(PleaseProvideControllerClassName.data != null) {
+    		Comparator<DropRecordData> comparator = Comparator.comparing(DropRecordData::getSeaArea).thenComparing(DropRecordData::getSquare);
+    		PleaseProvideControllerClassName.data.stream().sorted(comparator).forEach(i -> {table.add(i.getSeaArea());
     																																	table.add(i.getSquare()); });
 
-    	
-		String tempArea = table.get(0);
-		String tempSquare = table.get(1);
-		choicelist.add(tempArea);
-		choicelist.add(tempSquare);
+   			String tempArea = table.get(0);
+    		String tempSquare = table.get(1);
+   			choicelist.add(tempArea);
+   			choicelist.add(tempSquare);
 		
-		//同じ値のときにも処理が行われている
-    	for(int temp = 2; temp<table.size(); temp=temp+2) {
+   			for(int temp = 2; temp<table.size(); temp=temp+2) {
 
-    		if(!(tempArea.equals(table.get(temp))) || !(tempSquare.equals(table.get(temp+1)))) {
-    			tempArea = table.get(temp);
-    			tempSquare = table.get(temp+1);
-				choicelist.add(tempArea);
-				choicelist.add(tempSquare);
+    			if(!(tempArea.equals(table.get(temp))) || !(tempSquare.equals(table.get(temp+1)))) {
+    				tempArea = table.get(temp);
+    				tempSquare = table.get(temp+1);
+   					choicelist.add(tempArea);
+    				choicelist.add(tempSquare);
+    			}
     		}
-    	}
     	
-   	for(int i = 0; i<choicelist.size(); i=i+2) {
-    		ItemSelect.getItems().add(choicelist.get(i) + " : " + choicelist.get(i+1) + "マス");
-    	}
+    		for(int i = 0; i<choicelist.size(); i=i+2) {
+    			ItemSelect.getItems().add(choicelist.get(i) + " : " + choicelist.get(i+1) + "マス");
+   			}
+   		}
     }
 
 

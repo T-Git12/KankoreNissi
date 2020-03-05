@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import java.io.*;
@@ -11,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
@@ -18,10 +21,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class PleaseProvideControllerClassName implements Initializable {
+public class PleaseProvideControllerClassName implements Initializable{
+	
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -56,14 +61,11 @@ public class PleaseProvideControllerClassName implements Initializable {
       InDropShip.setCellValueFactory(new PropertyValueFactory<DropRecordData, String>("DropShip"));
       select.setCellValueFactory(new PropertyValueFactory<DropRecordData, CheckBox>("CheckBox"));
     } 
-
     
 
     @FXML
     void onDropReport(ActionEvent event) {
     	try {
-//    		CreatSecondWindow csw = new CreatSecondWindow();
- //   		csw.DropReport();
     		Stage stage = new Stage();
     		AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("DropReport.fxml"));
     		Scene scene = new Scene(root);
@@ -71,13 +73,26 @@ public class PleaseProvideControllerClassName implements Initializable {
     		stage.setScene(scene);
     		stage.showAndWait();
     	}catch(Exception ex) {
-    		ex.printStackTrace();
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setHeaderText("ドロップデータが存在しません");
+    		alert.setContentText("ドロップデータを追加またはインポートしてください");
+    		alert.showAndWait();
     	}
 
     }
 
     @FXML
     void onExpedition(ActionEvent event) {
+    	try {
+    		Stage stage = new Stage();
+    		AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Expedition.fxml"));
+			Scene scene = new Scene(root);
+			stage.setTitle("遠征データ");
+			stage.setScene(scene);
+			stage.showAndWait();
+    	}catch(Exception ex) {
+    		ex.printStackTrace();
+    	}
 
     }
 
@@ -149,6 +164,7 @@ public class PleaseProvideControllerClassName implements Initializable {
         );
         File file = fc.showOpenDialog(null);
         if(file == null) return;
+        //おそらく元からテーブルに表示されているデータを消去
     	for(Object dt : data) {
    			Platform.runLater(() -> {
     		data.remove(dt);
@@ -159,9 +175,8 @@ public class PleaseProvideControllerClassName implements Initializable {
           File f = new File(file.getPath());
           BufferedReader br = new BufferedReader(new FileReader(f));
           String line;
-          //１行ずつCSVファイルを読み込む これおそらくからのセルがあるとエラー吐く
           while((line = br.readLine()) != null) {
-        	  String[] csvdata = line.split(",", 0);
+        	  String[] csvdata = line.split(",", -1);
         	  data.add(new DropRecordData(csvdata[0], csvdata[1], csvdata[2], csvdata[3], csvdata[4], AddCheckBox.addCheckBox()));
           }
           br.close();
