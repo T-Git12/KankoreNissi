@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -68,20 +70,52 @@ public class ExpeditionController implements Initializable{
     	FuelCon.setCellValueFactory(new PropertyValueFactory<ExpeditionData, String>("FuelCon"));
     	AmmunitionCon.setCellValueFactory(new PropertyValueFactory<ExpeditionData, String>("AmmunitionCon"));
     	
-    	//CSVì«Ç›çûÇ›
-    	try {
-    		File f = new File("tinnzyuhu.csv");
-    		BufferedReader br = new BufferedReader(new FileReader(f));
-    		String line;
-    		while((line = br.readLine()) != null) {
-    			String[] csvdata = line.split(",", -1);
-    			expeditiondata.add(new ExpeditionData(csvdata[0], csvdata[1], csvdata[2], csvdata[3], csvdata[4], csvdata[5], csvdata[6], csvdata[7], csvdata[8], csvdata[9], 
-    										csvdata[10], csvdata[11], csvdata[12], csvdata[13], csvdata[14], csvdata[15], csvdata[16], csvdata[17]));
-    		}
-    		br.close();
-    	}catch(IOException e) {
-    		System.out.println(e);
+    	SeaAreaSelect.getItems().add("í¡éÁï{äCàÊ");
+    	SeaAreaSelect.getItems().add("ìÏêºèîìáäCàÊ");
+    }
+    
+    @FXML
+    void onSeaAreaSelect(ActionEvent event) {
+    	String seaAreaSelect = SeaAreaSelect.getValue();
+    	for(Object dt : expeditiondata) {
+   			Platform.runLater(() -> {
+   				expeditiondata.remove(dt);
+   			});
     	}
+    	
+    	if(seaAreaSelect.contentEquals("í¡éÁï{äCàÊ")) {
+        	//CSVì«Ç›çûÇ›
+        	try {
+        		File f = new File("tinnzyuhu.csv");
+        		BufferedReader br = new BufferedReader(new FileReader(f));
+        		String line;
+        		while((line = br.readLine()) != null) {
+        			String[] csvdata = line.split(",", -1);
+        			expeditiondata.add(new ExpeditionData(csvdata[0], csvdata[1], csvdata[2], csvdata[3], csvdata[4], csvdata[5], csvdata[6], csvdata[7], csvdata[8], csvdata[9], 
+        										csvdata[10], csvdata[11], csvdata[12], csvdata[13], csvdata[14], csvdata[15], csvdata[16], csvdata[17]));
+        		}
+        		br.close();
+        	}catch(IOException e) {
+        		System.out.println(e);
+        	}
+    	}else if(seaAreaSelect.contentEquals("ìÏêºèîìáäCàÊ")) {
+        	//CSVì«Ç›çûÇ›
+        	try {
+        		File f = new File("nanseisyotou.csv");
+        		BufferedReader br = new BufferedReader(new FileReader(f));
+        		String line;
+        		while((line = br.readLine()) != null) {
+        			String[] csvdata = line.split(",", -1);
+        			expeditiondata.add(new ExpeditionData(csvdata[0], csvdata[1], csvdata[2], csvdata[3], csvdata[4], csvdata[5], csvdata[6], csvdata[7], csvdata[8], csvdata[9], 
+        										csvdata[10], csvdata[11], csvdata[12], csvdata[13], csvdata[14], csvdata[15], csvdata[16], csvdata[17]));
+        		}
+        		br.close();
+        	}catch(IOException e) {
+        		System.out.println(e);
+        	}
+    	}
+    	
+
     }
 
     @FXML

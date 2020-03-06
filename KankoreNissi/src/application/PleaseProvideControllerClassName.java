@@ -1,11 +1,11 @@
 package application;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
-
+import java.awt.Desktop;
 import java.io.*;
 
+import java.net.URI;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -106,7 +105,15 @@ public class PleaseProvideControllerClassName implements Initializable{
 
     @FXML
     void onRecipe(ActionEvent event) {
-
+    	//ブラウザを開く
+    	String uriString="https://wantora.github.io/kancolle-recipe-generator/";
+    	Desktop desktop = Desktop.getDesktop();
+    	try {
+    		URI uri = new URI(uriString);
+    		desktop.browse(uri);
+    	}catch(Exception e){
+    		 e.getStackTrace();
+    	}
     }
     
     @FXML

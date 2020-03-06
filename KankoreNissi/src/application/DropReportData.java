@@ -6,6 +6,13 @@ public class DropReportData {
 		private String DropShipName;
 		private String DropShipNumber;
 		
+		public DropReportData(String DropArea, String DropSquare, String DropShipName, String DropShipNumber) {
+			this.DropArea = DropArea;
+			this.DropSquare = DropSquare;
+			this.DropShipName = DropShipName;
+			this.DropShipNumber = DropShipNumber;
+		}
+		
 		public String getDropArea() {
 			return DropArea;
 		}
