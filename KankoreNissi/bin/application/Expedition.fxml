@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ExpeditionController">
+   <children>
+      <TableView fx:id="ExpeditionTable" layoutY="53.0" prefHeight="447.0" prefWidth="860.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+        <columns>
+          <TableColumn fx:id="No" prefWidth="21.0" text="No" />
+          <TableColumn fx:id="ExpeditionName" prefWidth="95.0" text="遠征名" />
+            <TableColumn fx:id="Time" minWidth="0.0" prefWidth="40.0" text="時間" />
+            <TableColumn prefWidth="155.0" text="必要艦艇">
+               <columns>
+                  <TableColumn fx:id="ShipLv" prefWidth="38.0" text="Lv" />
+                  <TableColumn fx:id="FlagShipLv" prefWidth="37.0" text="旗艦" />
+                  <TableColumn fx:id="MinimumNumber" prefWidth="45.0" text="最低数" />
+                  <TableColumn fx:id="EssentialShip" prefWidth="120.0" text="必須艦" />
+                  <TableColumn fx:id="Drum" prefWidth="32.0" text="ドラム" />
+               </columns></TableColumn>
+            <TableColumn prefWidth="148.0" text="報酬(1hあたり)">
+               <columns>
+                  <TableColumn fx:id="Fuel" prefWidth="30.0" text="燃料" />
+                  <TableColumn fx:id="Ammunition" prefWidth="30.0" text="弾薬" />
+                  <TableColumn fx:id="Steel" prefWidth="30.0" text="鋼材" />
+                  <TableColumn fx:id="Bauxite" prefWidth="32.0" text="ボーキ" />
+               </columns>
+            </TableColumn>
+            <TableColumn prefWidth="225.0" text="出現アイテム(1hあたり)">
+               <columns>
+                  <TableColumn fx:id="Repair" prefWidth="40.0" text="修復" />
+                  <TableColumn fx:id="Construction" prefWidth="40.0" text="建造" />
+                  <TableColumn fx:id="Development" prefWidth="40.0" text="開発" />
+                  <TableColumn fx:id="FurnitureBox" text="家具箱" />
+               </columns>
+            </TableColumn>
+            <TableColumn prefWidth="139.0" text="消費燃料(1hあたり)">
+               <columns>
+                  <TableColumn fx:id="FuelCon" prefWidth="50.0" text="燃料" />
+                  <TableColumn fx:id="AmmunitionCon" prefWidth="50.0" text="弾薬" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <ChoiceBox fx:id="SeaAreaSelect" layoutX="63.0" layoutY="18.0" prefHeight="25.0" prefWidth="204.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="18.0" />
+      <Label fx:id="SeaArea" layoutX="23.0" layoutY="18.0" prefHeight="25.0" prefWidth="40.0" text="海域：" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="18.0" />
+      <Button layoutX="275.0" layoutY="18.0" mnemonicParsing="false" onAction="#onSeaAreaSelect" text="OK" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="18.0" />
+   </children>
+</AnchorPane>
